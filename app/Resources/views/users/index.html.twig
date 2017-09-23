@@ -1,0 +1,63 @@
+{% extends 'layout.html.twig' %}
+{% block body %}
+    <div class="content-wrapper">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h3 class="box-title">
+                            <p class="text-right">
+                                <a href="{{ path('users_new') }}" class="btn btn-block btn-primary btn-sm" style="width: 125px;">Create New</a>
+                            </p>
+                        </h3>
+                        <br>
+                        <p style="display: inline-block;">Total: {{ users|length }} results</p>
+                    </div>
+                    <div class="col-sm-6 wrap-top-pagination">
+                        <div class="heading-page-pagination">
+                            {# pagination here #}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box-body" style=" overflow-x: scroll; ">
+                <table class="table table-bordered">
+
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Birthday</th>
+                        <th>Telephone</th>
+                        <th>Email</th>
+                        <th style="width: 50px;">Actions</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td><a href="{{ path('users_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
+                            <td>{{ user.name }}</td>
+                            <td>{{ user.address }}</td>
+                            <td>{% if user.birthday %}{{ user.birthday|date('Y-m-d') }}{% endif %}</td>
+                            <td>{{ user.telephone }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>
+                                <a href="{{ path('users_show', { 'id': user.id }) }}"
+                                   class="btn btn-block btn-info btn-xs">Show</a>
+                                <a href="{{ path('users_edit', { 'id': user.id }) }}" class="btn btn-block btn-warning btn-xs">Edit</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="box-footer">
+                {# pagination here #}
+            </div>
+        </div>
+    </div>
+{% endblock %}

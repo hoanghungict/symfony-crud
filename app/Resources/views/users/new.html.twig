@@ -1,0 +1,95 @@
+{% extends 'layout.html.twig' %}
+{% block body %}
+    <div class="content-wrapper">
+        {{ form_start(form) }}
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">
+                        <a href="{{ path('users_index') }}" class="btn btn-block btn-default btn-sm" style="width: 125px;">Back</a>
+                    </h3>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <div class="form-group text-center">
+                                <img id="profile-image-preview" style="max-width: 300px; max-height: 300px;" src="https://sis.nws.noaa.gov/css/images/google_avatar.png" alt="" class="margin"/>
+                                <input type="file" style="display: none;" id="profile-image" name="profile_image">
+                                <p class="help-block" style="font-weight: bolder;">
+                                    User Avatar
+                                    <label for="profile-image" style="font-weight: 100; color: #549cca; margin-left: 10px; cursor: pointer;">edit</label>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-7">
+                            <table class="edit-user-profile">
+                                <tr class="@if ($errors->has('name')) has-error @endif">
+                                    <td>
+                                        <label for="name">Name</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" id="name" name="name" required>
+                                    </td>
+                                </tr>
+
+                                <tr class="@if ($errors->has('email')) has-error @endif">
+                                    <td>
+                                        <label for="email">Email</label>
+                                    </td>
+                                    <td>
+                                        <input type="email" class="form-control" id="email" name="email" required>
+                                    </td>
+                                </tr>
+
+                                <tr class="@if ($errors->has('gender')) has-error @endif">
+                                    <td>
+                                        <label for="gender">Gender</label>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="gender" id="gender" style="margin-bottom: 15px;" required>
+                                            <option value="1">Male</option>
+                                            <option value="0">Female</option>
+                                        </select>
+                                    </td>
+                                </tr>
+
+                                <tr class="@if ($errors->has('address')) has-error @endif">
+                                    <td>
+                                        <label for="address">Address</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" id="address" name="address" >
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group @if ($errors->has('telephone')) has-error @endif">
+                                <label for="telephone">Telephone</label>
+                                <input type="text" class="form-control" id="telephone" name="telephone">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group @if ($errors->has('birthday')) has-error @endif">
+                                <label for="birthday">Birthday</label>
+                                <div class="input-group date datetime-field" style="margin-bottom: 10px;">
+                                    <input type="text" class="form-control" style="margin: 0;" name="birthday" required>
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary btn-sm" style="width: 125px;">Save</button>
+                </div>
+            </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
